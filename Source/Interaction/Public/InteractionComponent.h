@@ -6,13 +6,14 @@
 #include "Components/ActorComponent.h"
 #include "InteractionComponent.generated.h"
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FBasicInteractionDelegate);
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class INTERACTION_API UInteractionComponent : public UActorComponent
 {
 	GENERATED_BODY()
 
-public:	
+public:
 	// Sets default values for this component's properties
 	UInteractionComponent();
 
@@ -23,7 +24,7 @@ protected:
 	UPROPERTY(EditAnywhere, Category="Interaction")
 	FString InteractionLabel;
 	
-public:	
+public:
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
@@ -32,5 +33,8 @@ public:
 	void Interact();
 
 	virtual void OnInteractionStart();
+
+	UPROPERTY(BlueprintAssignable)
+	FBasicInteractionDelegate OnInteractionStartDelegate;
 
 };

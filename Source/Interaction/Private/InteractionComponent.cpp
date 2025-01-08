@@ -41,6 +41,7 @@ void UInteractionComponent::Interact()
 {
 	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("InteractionLabel"));
 	OnInteractionStart();
+	OnInteractionStartDelegate.Broadcast();
 }
 
 void UInteractionComponent::OnInteractionStart()
